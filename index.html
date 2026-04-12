@@ -1,0 +1,1333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover"/>
+<title>Sanapa Sumanth Prapulla & Jagarlamudi Jaya Lakshmi — Wedding Invitation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400&family=Noto+Sans+Telugu:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ivory:#faf6ef;--cream:#f2ead8;--gold:#b8934a;--gold-light:#d4a96a;
+  --gold-pale:#e8d5a3;--dark:#2a1f0e;--text:#3d2f1a;--muted:#7a6548;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{
+  background:#1a0e06;color:var(--text);
+  font-family:'Jost','Noto Sans Telugu',sans-serif;
+  font-weight:300;overflow-x:hidden;
+}
+
+/* ══ VIDEO BACKGROUND ══ */
+#videoBg{
+  position:fixed;inset:0;z-index:-3;overflow:hidden;background:#0d0806;
+}
+#bgVideo{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+}
+/* Fallback canvas shown when no video */
+#fallbackBg{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;
+}
+/* Cinematic overlay on top of video */
+#videoOverlay{
+  position:fixed;inset:0;z-index:-2;
+  background:linear-gradient(
+    180deg,
+    rgba(15,8,3,0.55) 0%,
+    rgba(20,10,4,0.38) 35%,
+    rgba(20,10,4,0.45) 65%,
+    rgba(10,5,2,0.72) 100%
+  );
+}
+
+/* ══ NAV ══ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  padding:clamp(10px,2.5vw,18px) clamp(12px,4vw,32px);
+  display:flex;justify-content:center;align-items:center;
+  flex-wrap:wrap;gap:clamp(14px,3vw,32px);
+  background:linear-gradient(rgba(10,5,2,0.7),transparent);
+}
+nav a{
+  font-size:clamp(8px,1.8vw,10px);letter-spacing:.28em;
+  text-transform:uppercase;color:rgba(232,213,163,0.82);
+  text-decoration:none;transition:color .3s;
+}
+nav a:hover{color:var(--gold-light)}
+
+/* ══ LANGUAGE TOGGLE ══ */
+#langToggle{
+  position:fixed;top:clamp(10px,2vw,14px);right:clamp(10px,3vw,20px);
+  z-index:600;background:var(--gold);color:#fff;border:none;
+  padding:clamp(5px,1.2vw,8px) clamp(10px,2.5vw,16px);
+  font-family:'Jost',sans-serif;font-size:clamp(9px,1.8vw,11px);
+  letter-spacing:.18em;cursor:pointer;border-radius:2px;
+  transition:background .3s,transform .2s;
+  box-shadow:0 2px 12px rgba(184,147,74,.4);
+}
+#langToggle:hover{background:var(--gold-light);transform:translateY(-1px)}
+
+/* ══ HERO ══ */
+.hero{
+  min-height:100svh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:clamp(70px,10vw,100px) clamp(16px,5vw,40px) clamp(50px,8vw,70px);
+  position:relative;
+}
+.hero-border{
+  position:absolute;inset:clamp(10px,2vw,20px);
+  border:1px solid rgba(184,147,74,.5);pointer-events:none;
+}
+.hero-border::before{
+  content:'';position:absolute;inset:5px;
+  border:1px solid rgba(184,147,74,.25);
+}
+.corner{position:absolute;width:clamp(28px,4vw,44px);height:clamp(28px,4vw,44px)}
+.corner svg{width:100%;height:100%}
+.corner-tl{top:clamp(10px,2vw,20px);left:clamp(10px,2vw,20px)}
+.corner-tr{top:clamp(10px,2vw,20px);right:clamp(10px,2vw,20px);transform:scaleX(-1)}
+.corner-bl{bottom:clamp(10px,2vw,20px);left:clamp(10px,2vw,20px);transform:scaleY(-1)}
+.corner-br{bottom:clamp(10px,2vw,20px);right:clamp(10px,2vw,20px);transform:scale(-1,-1)}
+
+.hero-tag{
+  font-size:clamp(8px,1.8vw,10px);letter-spacing:.35em;text-transform:uppercase;
+  color:var(--gold-light);margin-bottom:clamp(16px,3vw,24px);
+  opacity:0;animation:fadeUp 1s .2s forwards;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.hero-names{
+  display:flex;
+  flex-direction:column;     /* 🔥 vertical layout */
+  align-items:center;
+  justify-content:center;
+
+  font-family:'Cormorant Garamond',serif;
+  font-weight:300;
+  font-size:clamp(44px,13vw,108px);
+  line-height:1.1;
+
+  color:#f5eed8;
+  letter-spacing:-.01em;
+}
+
+/* center & between names */
+.hero-amp{
+  font-size:0.5em;
+  color:var(--gold-pale);
+  margin:8px 0;   /* space above & below */
+}
+.hero-names em{font-style:italic;color:var(--gold-light)}
+
+.hero-divider{
+  display:flex;align-items:center;gap:16px;
+  margin:clamp(18px,3vw,28px) auto;
+  width:min(340px,78%);
+  opacity:0;animation:fadeUp 1s .7s forwards;
+}
+.hero-divider span{flex:1;height:1px;background:linear-gradient(90deg,transparent,rgba(232,213,163,.5),transparent)}
+.hero-divider-icon{color:var(--gold-pale);font-size:16px}
+.hero-date{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(16px,4vw,26px);
+  color:#f5eed8;
+  letter-spacing:.04em;
+
+  /* 🔥 SAME AS COUNTDOWN */
+  background:rgba(10,5,2,.55);
+  border:1px solid rgba(184,147,74,.4);
+  backdrop-filter:blur(6px);
+
+  padding:10px 24px;
+  display:inline-block;
+  margin-top:12px;
+
+  /* optional glow (matches style) */
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+
+  opacity:0;
+  animation:fadeUp 1s .9s forwards;
+}
+.hero-location{
+  font-size:clamp(8px,1.8vw,11px);letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold-light);margin-top:8px;
+  opacity:0;animation:fadeUp 1s 1.1s forwards;
+  text-shadow:0 1px 8px rgba(0,0,0,.6);
+}
+.hero p{
+  font-size:clamp(14px, 2.5vw, 18px);
+}
+/* ══ COUNTDOWN ══ */
+.countdown{display:flex;justify-content:center;gap:clamp(8px,2vw,20px);margin-top:clamp(28px,5vw,44px);flex-wrap:wrap}
+.cd-block{
+  text-align:center;opacity:0;animation:fadeUp .8s forwards;
+  background:rgba(10,5,2,.55);padding:clamp(8px,1.5vw,14px) clamp(10px,2vw,18px);
+  border:1px solid rgba(184,147,74,.4);min-width:clamp(52px,10vw,70px);
+  backdrop-filter:blur(6px);
+}
+.cd-block:nth-child(1){animation-delay:1.3s}.cd-block:nth-child(2){animation-delay:1.45s}
+.cd-block:nth-child(3){animation-delay:1.6s}.cd-block:nth-child(4){animation-delay:1.75s}
+.cd-num{font-family:'Cormorant Garamond',serif;font-size:clamp(30px,7vw,48px);font-weight:300;color:#f5eed8;line-height:1;display:block}
+.cd-label{font-size:clamp(7px,1.5vw,9px);letter-spacing:.28em;text-transform:uppercase;color:var(--gold-light);margin-top:4px;display:block}
+.cd-sep{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,5vw,38px);color:rgba(184,147,74,.5);line-height:1;margin-top:clamp(8px,1.5vw,14px);align-self:flex-start}
+.countdown-done{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,5vw,28px);color:var(--gold-light);padding:20px;background:rgba(10,5,2,.7);border:1px solid var(--gold-pale)}
+
+.scroll-hint{
+  position:absolute;bottom:clamp(10px,2vw,20px);left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  opacity:0;animation:fadeUp 1s 1.9s forwards;
+}
+.scroll-hint span{font-size:8px;letter-spacing:.3em;text-transform:uppercase;color:rgba(232,213,163,.7)}
+.scroll-line{width:1px;height:32px;background:linear-gradient(var(--gold-light),transparent);animation:scrollPulse 2.2s 2s infinite}
+
+/* ══ CONTENT SECTIONS ══ */
+.content-section{padding:clamp(50px,8vw,90px) clamp(16px,5vw,32px);max-width:960px;margin:0 auto}
+.glass-card{
+  background:rgba(10,5,2,.72);border:1px solid rgba(184,147,74,.35);
+  padding:clamp(28px,5vw,60px) clamp(18px,5vw,52px);
+  backdrop-filter:blur(14px);box-shadow:0 8px 48px rgba(0,0,0,.5);
+}
+.section-label{
+  font-size:clamp(10px,2.2vw,14px);  /* increased */
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  text-align:center;
+  margin-bottom:12px;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;font-size:clamp(26px,6vw,50px);font-weight:300;
+  text-align:center;color:#f5eed8;line-height:1.1;margin-bottom:clamp(28px,5vw,44px);
+}
+.section-title em{font-style:italic;color:var(--gold-light)}
+
+/* ══ VENUE CARDS ══ */
+.venue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:clamp(16px,3vw,28px)}
+.venue-card{
+  background:rgba(15,8,3,.68);border:1px solid rgba(184,147,74,.4);
+  padding:clamp(22px,4vw,36px) clamp(16px,3.5vw,28px);
+  position:relative;overflow:hidden;opacity:0;transform:translateY(22px);
+  transition:opacity .6s ease,transform .6s ease;backdrop-filter:blur(8px);
+}
+.venue-card.visible{opacity:1;transform:translateY(0)}
+.venue-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.venue-icon{font-size:clamp(22px,4vw,28px);margin-bottom:12px;display:block}
+.venue-type{
+  font-size:clamp(10px,2vw,13px);  /* increased */
+  letter-spacing:.4em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  margin-bottom:7px;
+  display:block;
+}
+.venue-name{font-family:'Cormorant Garamond',serif;font-size:clamp(20px,4vw,26px);font-weight:300;color:#f5eed8;line-height:1.2;margin-bottom:10px}
+.venue-address{font-size:clamp(12px,2vw,13px);color:rgba(232,213,163,.7);line-height:1.7;margin-bottom:16px}
+.venue-meta{display:flex;gap:10px;flex-wrap:wrap}
+.venue-pill{font-size:clamp(9px,1.8vw,11px);letter-spacing:.1em;padding:4px 10px;border:1px solid rgba(184,147,74,.35);color:rgba(232,213,163,.75);background:rgba(10,5,2,.5)}
+.venue-map-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+
+  margin-top:18px;
+  padding:8px 14px;
+
+  font-size:clamp(10px,2vw,12px);
+  letter-spacing:.25em;
+  text-transform:uppercase;
+
+  color:var(--gold-light);
+  text-decoration:none;
+
+  border:1px solid rgba(184,147,74,.5);
+  background:rgba(10,5,2,.6);
+
+  transition:all .3s ease;
+}
+
+/* hover effect */
+.venue-map-btn:hover{
+  color:#f5eed8;
+  border-color:#f5eed8;
+  background:rgba(10,5,2,.8);
+  transform:translateY(-2px);
+}
+
+/* ══ DINNER ══ */
+.dinner-wrap{border:1px solid rgba(184,147,74,.35);padding:clamp(24px,5vw,48px) clamp(16px,4vw,44px);text-align:center;max-width:680px;margin:0 auto;position:relative}
+.dinner-wrap::before,.dinner-wrap::after{content:'❧';font-size:22px;color:rgba(184,147,74,.4);display:block}
+.dinner-wrap::after{margin-top:8px;transform:scaleX(-1)}
+.menu-courses{margin-top:24px;display:flex;flex-direction:column;gap:clamp(12px,2vw,20px)}
+.course{display:flex;align-items:baseline;gap:0}
+.course-name{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(15px,3vw,19px);color:#f0e8d0;flex:none;max-width:55%}
+.course-dots{flex:1;border-bottom:1px dotted rgba(184,147,74,.3);margin:0 10px 4px}
+.course-time{font-size:clamp(10px,2vw,12px);letter-spacing:.15em;color:var(--gold-light);flex:none}
+
+/* ══ CONTACT ══ */
+.contact-section{background:rgba(8,4,1,.88);backdrop-filter:blur(16px);padding:clamp(50px,8vw,80px) clamp(16px,5vw,32px);border-top:1px solid rgba(184,147,74,.2)}
+.contact-section .section-label{color:var(--gold-light)}
+.contact-section .section-title{color:#f5eed8}
+.contact-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(16px,3.5vw,24px);color:rgba(232,213,163,.85);text-align:center;max-width:540px;margin:0 auto clamp(28px,5vw,52px);line-height:1.7}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:clamp(16px,3vw,28px);max-width:640px;margin:0 auto}
+.contact-card{border:1px solid rgba(184,147,74,.3);padding:clamp(24px,4vw,36px) clamp(16px,3vw,28px);text-align:center;position:relative;background:rgba(15,8,3,.5)}
+.contact-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.contact-side{font-size:clamp(7px,1.5vw,9px);letter-spacing:.4em;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px;display:block}
+.contact-name{font-family:'Cormorant Garamond',serif;font-size:clamp(18px,3.5vw,24px);font-weight:300;color:#f5eed8;margin-bottom:10px}
+.contact-phone{font-size:clamp(14px,3vw,18px);letter-spacing:.1em;color:var(--gold-light);text-decoration:none;display:block;transition:color .3s}
+.contact-phone:hover,.contact-phone:active{color:#f5eed8}
+.contact-icon{font-size:clamp(20px,3.5vw,24px);margin-bottom:12px;display:block}
+
+/* ══ FOOTER ══ */
+footer{text-align:center;padding:clamp(28px,5vw,44px) clamp(16px,5vw,32px);background:rgba(5,2,1,.9);border-top:1px solid rgba(184,147,74,.15)}
+.footer-names{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(24px,5vw,34px);color:rgba(232,213,163,.7);margin-bottom:8px}
+footer p{font-size:clamp(8px,1.8vw,11px);letter-spacing:.22em;text-transform:uppercase;color:rgba(184,147,74,.35)}
+
+.floral-divider{text-align:center;color:rgba(184,147,74,.4);font-size:18px;letter-spacing:.5em;padding:12px 0}
+
+/* ══ FIREWORKS ══ */
+#fireworksCanvas{position:fixed;inset:0;z-index:9000;pointer-events:none;display:none;width:100%;height:100%}
+#blastOverlay{position:fixed;inset:0;z-index:8999;display:none;align-items:center;justify-content:center;flex-direction:column;pointer-events:none;padding:20px}
+.blast-msg{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(22px,6vw,56px);color:var(--gold-light);text-shadow:0 0 30px rgba(184,147,74,.7);text-align:center;padding:clamp(16px,3vw,28px) clamp(24px,5vw,48px);background:rgba(5,2,1,.9);border:2px solid var(--gold);animation:blastPop .65s ease}
+@keyframes blastPop{0%{transform:scale(.3) rotate(-4deg);opacity:0}70%{transform:scale(1.08) rotate(1deg);opacity:1}100%{transform:scale(1) rotate(0);opacity:1}}
+
+/* ══ BIRDS + PETALS CANVAS ══ */
+#magicCanvas{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:100}
+
+/* ══ ANIMATIONS ══ */
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:.25}50%{opacity:.9}}
+
+/* ══ VIDEO GUIDE BOX ══ */
+#videoGuide{
+  position:fixed;bottom:16px;left:16px;z-index:700;
+  background:rgba(5,2,1,.92);border:1px solid rgba(184,147,74,.5);
+  color:rgba(232,213,163,.85);padding:12px 16px;
+  font-size:11px;line-height:1.6;max-width:260px;
+  border-radius:2px;cursor:pointer;transition:opacity .3s;
+}
+#videoGuide strong{color:var(--gold-light);display:block;margin-bottom:4px}
+#videoGuide:hover{opacity:.7}
+#closeGuide{float:right;cursor:pointer;color:var(--gold-light);font-size:14px;margin-top:-2px}
+
+/* ══ MOBILE EXTRAS ══ */
+@media(max-width:480px){
+  .hero-names{font-size:clamp(40px,14vw,60px)}
+  .glass-card{padding:22px 14px}
+  .dinner-wrap{padding:22px 12px}
+  .course-name{max-width:48%}
+  nav{gap:12px;padding:10px 12px}
+  .countdown{gap:6px}
+  .cd-sep{display:none}
+}
+@media(max-width:360px){
+  .hero-names{font-size:36px}
+  .cd-num{font-size:28px}
+}
+/* ===== CURTAIN INTRO ===== */
+#curtainIntro{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  overflow:hidden;
+}
+
+/* 🎭 Curtains with folds */
+.curtain{
+  position:absolute;
+  top:0;
+  width:50%;
+  height:100%;
+
+  /* fabric folds */
+  background:
+    repeating-linear-gradient(
+      to right,
+      #5a1f1f 0px,
+      #5a1f1f 18px,
+      #2a0e0e 18px,
+      #2a0e0e 36px
+    );
+
+  /* depth */
+  box-shadow:
+    inset -12px 0 30px rgba(0,0,0,0.6),
+    inset 12px 0 30px rgba(0,0,0,0.4);
+
+  transition:transform 2s ease;
+}
+
+.curtain.left{ left:0; }
+.curtain.right{ right:0; }
+
+/* ✨ edge highlight */
+.curtain::after{
+  content:'';
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:20px;
+  background:linear-gradient(to right, rgba(255,215,150,0.25), transparent);
+}
+
+.curtain.left::after{ right:0; }
+.curtain.right::after{ left:0; }
+
+/* 🎭 top rod shadow */
+#curtainIntro::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:25px;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+  z-index:3;
+}
+
+/* 💌 message */
+.intro-message{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  color:#f5eed8;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(26px,6vw,48px);
+  text-align:center;
+
+  opacity:0;
+  animation:fadeIn 1s forwards;
+
+  text-shadow:0 0 20px rgba(184,147,74,.6);
+}
+
+@keyframes fadeIn{
+  to{ opacity:1; }
+}
+@keyframes fadeOut{
+  to{ opacity:0; }
+}
+/* 👨‍👩‍👧 FAMILY SECTION */
+.family-section{
+  display:flex;
+  justify-content:center;
+  gap:20px;
+  margin-top:20px;
+  flex-wrap:wrap;
+}
+
+/* Cards */
+.family-card{
+  background:rgba(10,5,2,.55);
+  border:1px solid rgba(184,147,74,.4);
+  backdrop-filter:blur(6px);
+
+  padding:16px 20px;
+  min-width:220px;
+  text-align:center;
+
+  box-shadow:0 4px 20px rgba(0,0,0,.4);
+}
+
+/* Label (Bride / Groom) */
+.family-label{
+  font-size:clamp(10px,2vw,14px);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--gold-light);
+  display:block;
+  margin-bottom:6px;
+}
+
+/* Name */
+.family-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,3vw,24px);
+  color:#f5eed8;
+  margin-bottom:6px;
+}
+
+/* Parents */
+.family-parents{
+  font-size:clamp(12px,2vw,15px);
+  color:rgba(232,213,163,0.8);
+  line-height:1.5;
+}
+.family-card:hover{
+  transform:translateY(-4px);
+  border-color:#f5eed8;
+}
+</style>
+</head>
+<body>
+<div id="curtainIntro">
+  <div class="curtain left"></div>
+  <div class="curtain right"></div>
+
+  <div class="intro-message"
+       data-en="We invite you to our Wedding"
+       data-te="మా వివాహానికి మిమ్మల్ని ఆహ్వానిస్తున్నాము">
+       We invite you to our Wedding
+  </div>
+</div>
+<!-- ══════════════════════════════════════════ -->
+<!-- VIDEO BACKGROUND                          -->
+<!-- TO ADD YOUR OWN VIDEO:                    -->
+<!--  1. Place your video file in the SAME     -->
+<!--     folder as this index.html             -->
+<!--  2. Name it "wedding-bg.mp4"              -->
+<!--     OR change the src below to your file  -->
+<!--  3. Upload both to GitHub together        -->
+<!-- ══════════════════════════════════════════ -->
+<div id="videoBg">
+  <video id="bgVideo" autoplay muted loop playsinline poster=""
+    onerror="document.getElementById('bgVideo').style.display='none'">
+    <!-- ▼▼▼ CHANGE THIS SRC TO YOUR VIDEO FILE NAME ▼▼▼ -->
+    <source src="wedding-bg.mp4" type="video/mp4"/>
+    <!-- Also supports .webm for better browser compatibility: -->
+    <!-- <source src="wedding-bg.webm" type="video/webm"/> -->
+  </video>
+  <!-- Fallback SVG scene shown when no video file is present -->
+  <canvas id="fallbackBg"></canvas>
+</div>
+<div id="videoOverlay"></div>
+
+<!-- VIDEO GUIDE (click to dismiss) -->
+<!-- <div id="videoGuide" onclick="this.style.display='none'">
+  <span id="closeGuide">✕</span>
+  <strong>📹 Add Your Video</strong>
+  Name your video file <code style="color:var(--gold-light)">wedding-bg.mp4</code> and place it in the same folder as <code style="color:var(--gold-light)">index.html</code>, then re-upload both to GitHub.
+  <br/><em style="color:rgba(184,147,74,.6);font-size:10px">Click to dismiss</em>
+</div> -->
+
+<!-- LANG TOGGLE -->
+<button id="langToggle" onclick="toggleLang()">తెలుగు</button>
+
+<!-- NAV -->
+<nav>
+  <a href="#top"     data-en="Home"    data-te="హోమ్">Home</a>
+  <a href="#venues"  data-en="Venues"  data-te="వేదికలు">Venues</a>
+  <!-- <a href="#dinner"  data-en="Dinner"  data-te="విందు">Dinner</a> -->
+  <a href="#contact" data-en="Contact" data-te="సంప్రదించండి">Contact</a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="top">
+  <div class="hero-border"></div>
+  <div class="corner corner-tl"><svg viewBox="0 0 44 44" fill="none"><path d="M2 42L2 2L42 2" stroke="#d4a96a" stroke-width="1"/><path d="M8 2Q8 14 2 14" stroke="#b8934a" stroke-width=".7"/><circle cx="8" cy="8" r="2" fill="#d4a96a" opacity=".5"/></svg></div>
+  <div class="corner corner-tr"><svg viewBox="0 0 44 44" fill="none"><path d="M2 42L2 2L42 2" stroke="#d4a96a" stroke-width="1"/><path d="M8 2Q8 14 2 14" stroke="#b8934a" stroke-width=".7"/><circle cx="8" cy="8" r="2" fill="#d4a96a" opacity=".5"/></svg></div>
+  <div class="corner corner-bl"><svg viewBox="0 0 44 44" fill="none"><path d="M2 42L2 2L42 2" stroke="#d4a96a" stroke-width="1"/><path d="M8 2Q8 14 2 14" stroke="#b8934a" stroke-width=".7"/><circle cx="8" cy="8" r="2" fill="#d4a96a" opacity=".5"/></svg></div>
+  <div class="corner corner-br"><svg viewBox="0 0 44 44" fill="none"><path d="M2 42L2 2L42 2" stroke="#d4a96a" stroke-width="1"/><path d="M8 2Q8 14 2 14" stroke="#b8934a" stroke-width=".7"/><circle cx="8" cy="8" r="2" fill="#d4a96a" opacity=".5"/></svg></div>
+
+  <!-- <p class="hero-tag" data-en="Together with our families" data-te="మా కుటుంబాలతో కలిసి">Together with our families</p> -->
+  <p class="hero-tag" data-en="Wedding Invitation" data-te="వివాహ ఆహ్వానం">Wedding Invitation</p>
+  <h1 class="hero-names"><em data-en="Sanapa Sumanth Prapulla" data-te="సనప సుమంత్ ప్రపుల్ల">Sanapa Sumanth Prapulla</em>
+  <span class="hero-amp">&amp;</span>
+  <em data-en="Jagarlamudi Jaya Lakshmi" data-te="జాగర్లముడి జయ లక్ష్మి">Jagarlamudi Jaya Lakshmi</em>
+  </h1>
+<div class="family-section">
+
+  <!-- Groom Block -->
+  <div class="family-card">
+    <span class="family-label"
+      data-en="Groom's Family"
+      data-te="వరుని కుటుంబం">
+      Groom's Family
+    </span>
+
+    <span class="contact-icon">🤵🏻‍♂️</span>
+
+    <div class="family-name"
+         data-en="Sanapa Sumanth Prapulla"
+         data-te="సనప సుమంత్ ప్రపుల్ల">
+         Sanapa Sumanth Prapulla
+    </div>
+
+    <div class="family-parents"
+        data-en="Son of Mr. Sanapa Venkateswarlu (late) & Mrs. Kumari<br>Brother: Sanapa Thanooj Prapulla"
+        data-te="శ్రీ సనప వెంకటేశ్వర్లు (late) & శ్రీమతి కుమారి కుమారుడు<br>తమ్ముడు: సనప తనూజ్ ప్రపుల్ల">
+        Son of Mr. Sanapa Venkateswarlu (late) & Mrs. Kumari<br>
+        Brother: Sanapa Thanooj Prapulla
+    </div>
+  </div>
+
+  <!-- Bride Block -->
+  <div class="family-card">
+    <span class="family-label"
+      data-en="Bride's Family"
+      data-te="వధువు కుటుంబం">
+      Bride's Family
+    </span>
+
+    <span class="contact-icon">👰🏻‍♀️</span>
+
+    <div class="family-name"
+         data-en="Jagarlamudi Jaya Lakshmi"
+         data-te="జాగర్లముడి జయ లక్ష్మి">
+         Jagarlamudi Jaya Lakshmi
+    </div>
+
+    <div class="family-parents"
+         data-en="Daughter of Mr. Jagarlamudi Ravi Kumar & Mrs. Venkayamma<br>Sister: Jagarlamudi Hari Chandana"
+         data-te="శ్రీ జాగర్లముడి రవి కుమార్ & శ్రీమతి వెంకయమ్మ  కుమార్తె<br>సోదరి: జాగర్లముడి హరి చందన">
+         Daughter of Mr. Jagarlamudi Ravi Kumar & Mrs. Venkayamma<br>
+         Sister: Jagarlamudi Hari Chandana
+    </div>
+  </div>
+
+</div>
+  <div class="hero-divider"><span></span><span class="hero-divider-icon">✦</span><span></span></div>
+  <p class="hero-date" data-en="We invite you to celebrate our wedding on Friday, the 8th May, 2026" data-te="2026 మే 8వ తేదీ, శుక్రవారం నాడు జరిగే మా వివాహ వేడుకకు మిమ్మల్ని ఆహ్వానిస్తున్నాము.">We invite you to celebrate our wedding on Friday, the 8th May, 2026</p>
+  <!-- <p class="hero-location" data-en="Hyderabad, India" data-te="హైదరాబాద్, భారతదేశం">Hyderabad, India</p> -->
+
+  <div class="countdown" id="countdown">
+    <div class="cd-block"><span class="cd-num" id="cd-days">—</span><span class="cd-label" data-en="Days" data-te="రోజులు">Days</span></div>
+    <span class="cd-sep">·</span>
+    <div class="cd-block"><span class="cd-num" id="cd-hours">—</span><span class="cd-label" data-en="Hours" data-te="గంటలు">Hours</span></div>
+    <span class="cd-sep">·</span>
+    <div class="cd-block"><span class="cd-num" id="cd-mins">—</span><span class="cd-label" data-en="Minutes" data-te="నిమిషాలు">Minutes</span></div>
+    <span class="cd-sep">·</span>
+    <div class="cd-block"><span class="cd-num" id="cd-secs">—</span><span class="cd-label" data-en="Seconds" data-te="సెకన్లు">Seconds</span></div>
+  </div>
+
+  <div class="scroll-hint">
+    <span data-en="Scroll" data-te="స్క్రోల్">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</div>
+
+<!-- VENUES -->
+<div class="content-section" id="venues">
+  <div class="glass-card">
+    <!-- <p class="section-label" data-en="Where We Celebrate" data-te="మనం వేడుక చేసుకుంటాం">Where We Celebrate</p> -->
+    <h2 class="section-title" data-en="&lt;em&gt;Venue&lt;/em&gt; Details" data-te="వేదిక &lt;em&gt;వివరాలు&lt;/em&gt;"><em>Venue</em> Details</h2>
+    <div class="venue-grid">
+      <div class="venue-card">
+        <span class="venue-icon">🌸</span>
+        <span class="venue-type" data-en="Wedding Ceremony" data-te="వివాహ వేడుక">Wedding Ceremony</span>
+        <h3 class="venue-name" data-en="Addankamma Kalyana Mandapam" data-te="అదంకమ్మ కల్యాణ మందపం">Addankamma Kalyana Mandapam</h3>
+        <p class="venue-address" data-en="Addanki Nancharamma Temple, Parchoor,<br> Andhra Pradesh 523169" data-te="అదంకి నంచరమ్మ ధామం, పర్చూర్,<br> అంద్రప్రదేశ్ 523169">Addanki Nancharamma Temple, Parchoor,<br> Andhra Pradesh 523169</p>
+        <div class="venue-meta">
+          <span class="venue-pill">⏰ 7:00 PM – 02:30 AM</span>
+          <span class="venue-pill" data-en="📅 May 8, 2026" data-te="📅 మే 8, 2026">📅 May 8, 2026</span>
+        </div>
+        <a class="venue-map-btn" href="https://maps.app.goo.gl/ZbJYba87GhFssubT9?g_st=aw" target="_blank" data-en="<span>📍</span> View on Map →" data-te="<span>📍</span>మ్యాప్‌లో చూడండి →"><span>📍</span> View on Map →</a>
+      </div>
+      <div class="venue-card">
+        <span class="venue-icon">🥂</span>
+        <span class="venue-type" data-en="Reception &amp; Dinner" data-te="రిసెప్షన్ &amp; విందు">Reception &amp; Dinner</span>
+        <h3 class="venue-name" data-en="GOLDEN FUNCTION HALL" data-te="గోల్డెన్ ఫంక్షన్ హాల్">GOLDEN FUNCTION HALL</h3>
+        <p class="venue-address" data-en="Bombay Colony, P V Colony, Manuguru (PT),<br> Telangana 507125" data-te="బొంబాయి కాలనీ, పి వి కాలనీ, మనుగూరు (పిటి),<br> తెలంగాణ 507125">Bombay Colony, P V Colony, Manuguru (PT),<br> Telangana 507125</p>
+        <div class="venue-meta">
+          <span class="venue-pill">⏰ 10:00 AM – 02:00 PM</span>
+          <span class="venue-pill" data-en="📅 May 10, 2026" data-te="📅 మే 10, 2026">📅 May 10, 2026</span>
+        </div>
+        <a class="venue-map-btn" href="https://maps.app.goo.gl/hASCh4oydsF2oLA5A?g_st=iw" target="_blank" data-en="<span>📍</span> View on Map →" data-te="<span>📍</span>మ్యాప్‌లో చూడండి →"><span>📍</span> View on Map →</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="floral-divider">✦ ❧ ✦</div>
+
+<!-- DINNER -->
+<!-- <div class="content-section" id="dinner">
+  <div class="glass-card">
+    <p class="section-label" data-en="An Evening of Flavour" data-te="రుచుల సాయంత్రం">An Evening of Flavour</p>
+    <h2 class="section-title" data-en="The &lt;em&gt;Dinner&lt;/em&gt; Programme" data-te="విందు &lt;em&gt;కార్యక్రమం&lt;/em&gt;">The <em>Dinner</em> Programme</h2>
+    <div class="dinner-wrap">
+      <p style="font-size:clamp(11px,2.2vw,13px);letter-spacing:.08em;color:rgba(232,213,163,.7);margin-bottom:24px;line-height:1.8"
+         data-en="A curated feast celebrating the finest flavours of Hyderabadi cuisine, prepared with love for our cherished guests."
+         data-te="మా జగార్లమూడి జయ లక్ష్మిమైన అతిథులకు ప్రేమతో తయారు చేసిన హైదరాబాదీ వంటకాల విందు.">
+        A curated feast celebrating the finest flavours of Hyderabadi cuisine, prepared with love for our cherished guests.
+      </p>
+      <div class="menu-courses">
+        <div class="course"><span class="course-name" data-en="Welcome Cocktails &amp; Mocktails" data-te="స్వాగత పానీయాలు">Welcome Cocktails &amp; Mocktails</span><span class="course-dots"></span><span class="course-time">6:00 PM</span></div>
+        <div class="course"><span class="course-name" data-en="Live Starters &amp; Chaat" data-te="స్టార్టర్స్ &amp; చాట్">Live Starters &amp; Chaat</span><span class="course-dots"></span><span class="course-time">7:00 PM</span></div>
+        <div class="course"><span class="course-name" data-en="Wedding Ceremony" data-te="వివాహ వేడుక">Wedding Ceremony</span><span class="course-dots"></span><span class="course-time">8:00 PM</span></div>
+        <div class="course"><span class="course-name" data-en="Grand Dinner Buffet" data-te="విందు బఫే">Grand Dinner Buffet</span><span class="course-dots"></span><span class="course-time">9:30 PM</span></div>
+        <div class="course"><span class="course-name" data-en="Dum Biryani &amp; Curries" data-te="దమ్ బిర్యానీ &amp; కర్రీలు">Dum Biryani &amp; Curries</span><span class="course-dots"></span><span class="course-time">9:45 PM</span></div>
+        <div class="course"><span class="course-name" data-en="Live Dessert Station" data-te="స్వీట్స్ స్టేషన్">Live Dessert Station</span><span class="course-dots"></span><span class="course-time">10:45 PM</span></div>
+        <div class="course"><span class="course-name" data-en="Chai &amp; Mithai" data-te="చాయ్ &amp; మిఠాయి">Chai &amp; Mithai</span><span class="course-dots"></span><span class="course-time">11:15 PM</span></div>
+      </div>
+      <p style="font-size:clamp(9px,1.8vw,11px);letter-spacing:.18em;color:var(--gold-light);text-transform:uppercase;margin-top:28px"
+         data-en="Vegetarian · Vegan · Jain options available"
+         data-te="శాకాహారి · వీగన్ · జైన్ ఆప్షన్లు అందుబాటులో ఉన్నాయి">
+        Vegetarian · Vegan · Jain options available
+      </p>
+    </div>
+  </div>
+</div> -->
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div style="max-width:700px;margin:0 auto;text-align:center">
+    <p class="section-label" data-en="Join Us" data-te="మాతో చేరండి">Join Us</p>
+    <h2 class="section-title" data-en="We Invite you to celebrate with us" data-te="మాతో కలిసి వేడుక జరుపుకోవడానికి మిమ్మల్ని ఆహ్వానిస్తున్నాము.">We Invite you to celebrate with us</h2>
+    <p class="contact-msg" data-en="We would be honored by your presence. " data-te="మీ హాజరుతో మేము గౌరవించబడతాము.">
+      We would be honored by your presence.
+    </p>
+    <!-- <div class="contact-grid">
+      <div class="contact-card">
+        
+        <span class="contact-side" data-en="Groom's Family" data-te="వరుని కుటుంబం">Groom's Family</span>
+        <div class="contact-name" data-en="Thanooj Prapulla" data-te="సురేష్ రెడ్డి">Thanooj Prapulla</div>
+        <a class="contact-phone" href="tel:+919876500000">+91 83677 30349</a>
+      </div>
+      <div class="contact-card">
+        
+        <span class="contact-side" data-en="Bride's Family" data-te="వధువు కుటుంబం">Bride's Family</span>
+        <div class="contact-name" data-en="Ramesh Kumar" data-te="రమేష్ కుమార్">Ramesh Kumar</div>
+        <a class="contact-phone" href="tel:+919876543210">+91 98765 43210</a>
+      </div>
+      
+    </div> -->
+  </div>
+</section>
+
+<footer>
+  <div class="footer-names">Sanapa Sumanth Prapulla &amp; Jagarlamudi Jaya Lakshmi</div>
+  <p data-en="May 8, 2026 (Wedding) · May 10, 2026 (Reception)"
+     data-te="మే 8, 2026 (వివాహం) · మే 10, 2026 (రిసెప్షన్)">
+    May 8, 2026 (Wedding) · May 10, 2026 (Reception)
+  </p>
+  <p style="margin-top:8px;font-size:10px;opacity:.25"
+     data-en="Made with love ✦" data-te="ప్రేమతో తయారు చేయబడింది ✦">Made with love ✦</p>
+</footer>
+
+<canvas id="fireworksCanvas"></canvas>
+<div id="blastOverlay"><div class="blast-msg" id="blastMsg">Today is the Day! 🌸🎊<br>Sanapa Sumanth Prapulla &amp; Jagarlamudi Jaya Lakshmi</div></div>
+<canvas id="magicCanvas"></canvas>
+
+<script>
+// ═══════════════════════════════════════════════════
+// FALLBACK BACKGROUND (banana trees + temple)
+// shown only when no video file is found
+// ═══════════════════════════════════════════════════
+(function(){
+  const video = document.getElementById('bgVideo');
+  const fallback = document.getElementById('fallbackBg');
+  let fbRunning = false;
+
+  function startFallback(){
+    if(fbRunning) return;
+    fbRunning = true;
+    const ctx = fallback.getContext('2d');
+    let W, H;
+    function resize(){
+      W = fallback.width  = fallback.offsetWidth  || window.innerWidth;
+      H = fallback.height = fallback.offsetHeight || window.innerHeight;
+      draw();
+    }
+    function draw(){
+      // Sky gradient
+      const sky = ctx.createLinearGradient(0,0,0,H);
+      sky.addColorStop(0,'#2a0a18');
+      sky.addColorStop(0.4,'#4a1a0c');
+      sky.addColorStop(1,'#1a0a04');
+      ctx.fillStyle = sky;
+      ctx.fillRect(0,0,W,H);
+
+      // Stars
+      ctx.fillStyle='rgba(255,240,220,0.6)';
+      for(let i=0;i<80;i++){
+        const sx=Math.abs(Math.sin(i*137.5)*W);
+        const sy=Math.abs(Math.cos(i*97.3)*H*0.55);
+        const sr=0.5+Math.abs(Math.sin(i*51))*1.2;
+        ctx.beginPath();ctx.arc(sx,sy,sr,0,Math.PI*2);ctx.fill();
+      }
+
+      // Moon glow
+      const mg = ctx.createRadialGradient(W*0.78,H*0.12,0,W*0.78,H*0.12,90);
+      mg.addColorStop(0,'rgba(255,235,160,0.22)');
+      mg.addColorStop(1,'rgba(255,200,100,0)');
+      ctx.fillStyle=mg; ctx.fillRect(0,0,W,H);
+      ctx.fillStyle='rgba(255,240,200,0.85)';
+      ctx.beginPath();ctx.arc(W*0.78,H*0.12,22,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle='rgba(240,220,180,0.7)';
+      ctx.beginPath();ctx.arc(W*0.78+8,H*0.12-6,18,0,Math.PI*2);ctx.fill();
+
+      drawTemple(ctx,W,H);
+      drawBananaTree(ctx, W*0.06, H, H*0.85, 1, false);
+      drawBananaTree(ctx, W*0.92, H, H*0.8,  0.9, true);
+      drawBananaTree(ctx, W*0.01, H, H*0.7,  0.75, false);
+      drawBananaTree(ctx, W*0.97, H, H*0.65, 0.7,  true);
+
+      // Ground
+      const gr = ctx.createLinearGradient(0,H*0.88,0,H);
+      gr.addColorStop(0,'rgba(60,30,8,0.7)');
+      gr.addColorStop(1,'rgba(30,12,3,0.9)');
+      ctx.fillStyle=gr;ctx.fillRect(0,H*0.88,W,H*0.12);
+
+      // Mist
+      const mist=ctx.createLinearGradient(0,H*0.75,0,H);
+      mist.addColorStop(0,'rgba(80,30,10,0)');
+      mist.addColorStop(1,'rgba(20,8,2,0.65)');
+      ctx.fillStyle=mist;ctx.fillRect(0,H*0.75,W,H*0.25);
+    }
+    resize();
+    window.addEventListener('resize', resize);
+  }
+
+  // Check if video loads
+  video.addEventListener('error', startFallback);
+  video.addEventListener('loadeddata', ()=>{ fallback.style.display='none'; });
+  setTimeout(()=>{
+    if(video.readyState === 0 || video.networkState === 3){
+      startFallback();
+    }
+  }, 1800);
+})();
+
+// ── Draw temple on fallback ──
+function drawTemple(ctx, W, H){
+  const cx = W/2, base = H*0.88;
+  const sc = Math.min(W/1440, H/900) * 0.9;
+  ctx.save();
+  ctx.translate(cx, base);
+  ctx.scale(sc, sc);
+
+  // Compound
+  ctx.fillStyle='rgba(60,50,30,0.8)';
+  ctx.fillRect(-230, -22, 460, 22);
+  // Steps
+  ctx.fillStyle='rgba(80,65,35,0.7)';
+  ctx.fillRect(-57,-30,114,10);ctx.fillRect(-48,-40,96,10);ctx.fillRect(-40,-50,80,10);
+  // Gate base
+  ctx.fillStyle='rgba(200,180,130,0.6)';
+  ctx.fillRect(-108,-98,216,50);
+  // Gate arch
+  ctx.fillStyle='rgba(15,8,3,0.85)';
+  ctx.beginPath();ctx.roundRect(-28,-98,56,80,28);ctx.fill();
+  // Tier 1
+  const tw=[{w:216,h:90},{w:200,h:68},{w:180,h:62},{w:162,h:58},{w:148,h:54},{w:130,h:50},{w:112,h:46}];
+  let ty = -98;
+  tw.forEach((t,i)=>{
+    const alpha = 0.55 + i*0.03;
+    ctx.fillStyle=`rgba(${220-i*8},${200-i*8},${140-i*5},${alpha})`;
+    ctx.fillRect(-t.w/2, ty-t.h, t.w, t.h);
+    // bands
+    for(let b=1;b<4;b++){
+      ctx.strokeStyle='rgba(160,130,60,0.3)';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(-t.w/2, ty-t.h*b/4);ctx.lineTo(t.w/2, ty-t.h*b/4);ctx.stroke();
+    }
+    // Cornice
+    ctx.fillStyle=`rgba(180,150,70,0.55)`;
+    ctx.beginPath();ctx.moveTo(-t.w/2-5,ty-t.h);ctx.lineTo(t.w/2+5,ty-t.h);ctx.lineTo(t.w/2,ty-t.h-8);ctx.lineTo(-t.w/2,ty-t.h-8);ctx.closePath();ctx.fill();
+    ty -= t.h+8;
+  });
+  // Kalasams
+  const ky = ty;
+  [[0,14,9],[-14,9,6],[14,9,6],[-24,7,5],[24,7,5]].forEach(([kx,kr,kh])=>{
+    const kgr=ctx.createLinearGradient(0,ky-kh*3,0,ky);
+    kgr.addColorStop(0,'rgba(245,200,60,0.9)');kgr.addColorStop(1,'rgba(160,100,10,0.8)');
+    ctx.fillStyle=kgr;
+    for(let s=0;s<3;s++){ctx.beginPath();ctx.ellipse(kx,ky-s*(kh*0.9),kr*(1-s*.25),kh*(1-s*.2),0,0,Math.PI*2);ctx.fill();}
+    ctx.strokeStyle='rgba(200,150,20,0.6)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(kx,ky-kh*3);ctx.lineTo(kx,ky-kh*3-12);ctx.stroke();
+    ctx.fillStyle='rgba(230,80,20,0.8)';
+    ctx.beginPath();ctx.moveTo(kx,ky-kh*3-12);ctx.lineTo(kx+14,ky-kh*3-8);ctx.lineTo(kx,ky-kh*3-4);ctx.fill();
+  });
+  // Lamps
+  [[-112,0],[112,0]].forEach(([lx])=>{
+    ctx.fillStyle='rgba(200,160,60,0.7)';ctx.fillRect(lx-4,-5,8,18);
+    ctx.fillStyle='rgba(255,160,20,0.7)';ctx.beginPath();ctx.ellipse(lx,-8,4,6,0,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(255,230,60,0.9)';ctx.beginPath();ctx.ellipse(lx,-11,2,3,0,0,Math.PI*2);ctx.fill();
+  });
+  ctx.restore();
+}
+
+// ── Draw banana tree ──
+function drawBananaTree(ctx, x, baseY, treeH, scale, flip){
+  ctx.save();
+  if(flip){ctx.translate(x,0);ctx.scale(-1,1);ctx.translate(-x,0);}
+
+  const trunkH = treeH * 0.55;
+  const trunkW = 14 * scale;
+  const tx = x, ty = baseY;
+
+  // Trunk — slightly curved
+  const trunkGrad = ctx.createLinearGradient(tx-trunkW,0,tx+trunkW,0);
+  trunkGrad.addColorStop(0,'rgba(50,80,20,0.9)');
+  trunkGrad.addColorStop(0.4,'rgba(80,120,30,0.95)');
+  trunkGrad.addColorStop(1,'rgba(40,70,15,0.85)');
+  ctx.fillStyle = trunkGrad;
+
+  // Trunk segments (banana trunks have horizontal bands)
+  for(let i=0;i<8;i++){
+    const sy = ty - i*(trunkH/8);
+    const sw = trunkW * (1 - i*0.04);
+    const bend = Math.sin(i*0.4)*3*scale;
+    ctx.fillRect(tx - sw + bend, sy - trunkH/8, sw*2, trunkH/8 + 2);
+    // Segment line
+    ctx.strokeStyle='rgba(30,60,10,0.4)';ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(tx-sw+bend, sy);ctx.lineTo(tx+sw+bend, sy);ctx.stroke();
+  }
+
+  // Central stem curve
+  const bend = Math.sin(0.4*8)*3*scale;
+  const topX = tx + bend;
+  const topY = ty - trunkH;
+
+  // Leaves — large broad banana leaves
+  const leafData = [
+    {angle:-55, len:treeH*0.48, wid:22},
+    {angle:-30, len:treeH*0.52, wid:26},
+    {angle:-10, len:treeH*0.56, wid:28},
+    {angle: 15, len:treeH*0.54, wid:26},
+    {angle: 40, len:treeH*0.48, wid:22},
+    {angle: 70, len:treeH*0.40, wid:18},
+    {angle:-80, len:treeH*0.38, wid:16},
+    {angle: 90, len:treeH*0.34, wid:14},
+  ];
+
+  leafData.forEach(({angle, len, wid})=>{
+    const rad = (angle * Math.PI)/180;
+    const lx  = topX + Math.cos(rad)*len;
+    const ly  = topY + Math.sin(rad)*len;
+
+    // Leaf midrib
+    const perpX = -Math.sin(rad);
+    const perpY  =  Math.cos(rad);
+
+    // Leaf shape — elongated with parallel veins
+    const lg = ctx.createLinearGradient(topX, topY, lx, ly);
+    const freshness = 0.75 + Math.random()*0.2;
+    lg.addColorStop(0,`rgba(40,90,20,${freshness})`);
+    lg.addColorStop(0.5,`rgba(60,130,25,${freshness})`);
+    lg.addColorStop(1,`rgba(30,80,15,${freshness*0.7})`);
+
+    ctx.fillStyle = lg;
+    ctx.beginPath();
+    ctx.moveTo(topX, topY);
+    // Left edge
+    ctx.bezierCurveTo(
+      topX + Math.cos(rad)*len*0.3 + perpX*wid*scale,
+      topY + Math.sin(rad)*len*0.3 + perpY*wid*scale,
+      topX + Math.cos(rad)*len*0.7 + perpX*wid*scale*0.6,
+      topY + Math.sin(rad)*len*0.7 + perpY*wid*scale*0.6,
+      lx, ly
+    );
+    // Right edge
+    ctx.bezierCurveTo(
+      topX + Math.cos(rad)*len*0.7 - perpX*wid*scale*0.6,
+      topY + Math.sin(rad)*len*0.7 - perpY*wid*scale*0.6,
+      topX + Math.cos(rad)*len*0.3 - perpX*wid*scale,
+      topY + Math.sin(rad)*len*0.3 - perpY*wid*scale,
+      topX, topY
+    );
+    ctx.closePath();ctx.fill();
+
+    // Midrib
+    ctx.strokeStyle=`rgba(30,70,10,0.6)`;ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(topX,topY);ctx.lineTo(lx,ly);ctx.stroke();
+
+    // Leaf tears (realistic banana leaves have splits)
+    if(len > treeH*0.45){
+      for(let t=1;t<4;t++){
+        const tp = t/5;
+        const tearX = topX + Math.cos(rad)*len*tp + perpX*wid*scale*(1-tp);
+        const tearY = topY + Math.sin(rad)*len*tp + perpY*wid*scale*(1-tp);
+        ctx.strokeStyle=`rgba(20,60,8,0.35)`;ctx.lineWidth=1;
+        ctx.beginPath();ctx.moveTo(tearX,tearY);
+        ctx.lineTo(tearX + perpX*4, tearY + perpY*4);ctx.stroke();
+      }
+    }
+  });
+
+  // Banana fruit bunch (hanging from top)
+  if(scale > 0.7){
+    const bx = topX + 8, by = topY + 18;
+    // Bunch stem
+    ctx.strokeStyle='rgba(60,50,20,0.7)';ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.moveTo(bx,by);ctx.bezierCurveTo(bx+5,by+15,bx+8,by+30,bx+5,by+40);ctx.stroke();
+    // Individual bananas
+    [[0,0],[-5,10],[-2,20],[3,28],[1,36]].forEach(([ox,oy],i)=>{
+      const bg = ctx.createLinearGradient(bx+ox,by+oy,bx+ox+10,by+oy+6);
+      bg.addColorStop(0,'rgba(220,190,40,0.85)');
+      bg.addColorStop(1,'rgba(180,150,20,0.8)');
+      ctx.fillStyle=bg;
+      ctx.save();
+      ctx.translate(bx+ox,by+oy);ctx.rotate(0.3-i*0.08);
+      ctx.beginPath();ctx.ellipse(5,3,10,4,0.2,0,Math.PI*2);ctx.fill();
+      ctx.restore();
+    });
+  }
+
+  ctx.restore();
+}
+
+// ═══════════════════════════════════════════════════
+// LANGUAGE TOGGLE
+// ═══════════════════════════════════════════════════
+let currentLang = 'en';
+function toggleLang(){
+  currentLang = currentLang === 'en' ? 'te' : 'en';
+
+  document.getElementById('langToggle').textContent =
+    currentLang === 'en' ? 'తెలుగు' : 'English';
+
+  document.querySelectorAll('[data-en]').forEach(el=>{
+    const value = el.getAttribute('data-' + currentLang);
+
+    if(value){
+      // if element contains HTML tags like <br> or <span>
+      if(value.includes('<')){
+        el.innerHTML = value;
+      } else {
+        el.textContent = value;
+      }
+    }
+  });
+}
+
+// ═══════════════════════════════════════════════════
+// COUNTDOWN + BLAST
+// ═══════════════════════════════════════════════════
+const weddingDate = new Date('2026-05-08T20:00:00+05:30');
+let blastFired = false;
+function updateCountdown(){
+  const diff = weddingDate - new Date();
+  if(diff <= 0){
+    if(!blastFired){ blastFired=true; triggerBlast(); }
+    document.getElementById('countdown').innerHTML =
+      '<div class="countdown-done">'+(currentLang==='te'?'ఈ రోజే ఆ రోజు! 🌸':'Today is the Day! 🌸')+'</div>';
+    return;
+  }
+  document.getElementById('cd-days').textContent   = String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-hours').textContent  = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0');
+  document.getElementById('cd-mins').textContent   = String(Math.floor((diff%3600000)/60000)).padStart(2,'0');
+  document.getElementById('cd-secs').textContent   = String(Math.floor((diff%60000)/1000)).padStart(2,'0');
+}
+updateCountdown();
+setInterval(updateCountdown,1000);
+
+window.addEventListener("DOMContentLoaded", () => {
+  toggleLang();   // apply default once
+  toggleLang();   // switch back (fixes initial rendering issues)
+});
+// ═══════════════════════════════════════════════════
+// FIREWORKS BLAST
+// ═══════════════════════════════════════════════════
+function triggerBlast(){
+  const canvas=document.getElementById('fireworksCanvas');
+  const overlay=document.getElementById('blastOverlay');
+  canvas.style.display='block'; overlay.style.display='flex';
+  const ctx=canvas.getContext('2d');
+  let W=canvas.width=window.innerWidth, H=canvas.height=window.innerHeight;
+  window.addEventListener('resize',()=>{W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight;});
+  const COLS=['#f9b8d0','#fce08a','#f9d0a0','#a8e8c0','#a0c8f0','#e8a0f0','#ffffff','#f5c842','#ff6b6b','#ffd700','#ff69b4','#00ffcc'];
+  const parts=[];
+  class P{
+    constructor(x,y,c){
+      this.x=x;this.y=y;this.c=c;
+      const a=Math.random()*Math.PI*2, s=4+Math.random()*12;
+      this.vx=Math.cos(a)*s; this.vy=Math.sin(a)*s-6;
+      this.al=1; this.sz=3+Math.random()*6;
+      this.g=0.16+Math.random()*0.09; this.dc=0.01+Math.random()*0.008;
+      this.tr=[]; this.tp=Math.floor(Math.random()*3);
+      this.spin=(Math.random()-.5)*.4; this.rot=Math.random()*Math.PI*2;
+    }
+    upd(){
+      this.tr.push({x:this.x,y:this.y,a:this.al});
+      if(this.tr.length>7)this.tr.shift();
+      this.x+=this.vx; this.y+=this.vy;
+      this.vy+=this.g; this.vx*=.985; this.vy*=.985;
+      this.al-=this.dc; this.rot+=this.spin;
+    }
+    drw(c){
+      this.tr.forEach((t,i)=>{c.save();c.globalAlpha=t.a*(i/this.tr.length)*0.22;c.fillStyle=this.c;c.beginPath();c.arc(t.x,t.y,this.sz*.5,0,Math.PI*2);c.fill();c.restore();});
+      c.save();c.globalAlpha=Math.max(0,this.al);c.fillStyle=this.c;c.translate(this.x,this.y);c.rotate(this.rot);
+      if(this.tp===0){c.beginPath();c.arc(0,0,this.sz,0,Math.PI*2);c.fill();}
+      else if(this.tp===1){
+        c.beginPath();for(let i=0;i<5;i++){const a=(i*4*Math.PI)/5-Math.PI/2,r=i%2===0?this.sz:this.sz*.42;c.lineTo(Math.cos(a)*r,Math.sin(a)*r);}c.closePath();c.fill();
+      } else {
+        c.beginPath();c.moveTo(0,-this.sz);c.lineTo(this.sz*.3,-this.sz*.3);c.lineTo(this.sz,0);c.lineTo(this.sz*.3,this.sz*.3);c.lineTo(0,this.sz);c.lineTo(-this.sz*.3,this.sz*.3);c.lineTo(-this.sz,0);c.lineTo(-this.sz*.3,-this.sz*.3);c.closePath();c.fill();
+      }
+      c.restore();
+    }
+  }
+  function burst(x,y){
+    const n=70+Math.floor(Math.random()*40);
+    for(let i=0;i<n;i++) parts.push(new P(x,y,COLS[Math.floor(Math.random()*COLS.length)]));
+  }
+  for(let i=0;i<18;i++) setTimeout(()=>burst(W*(0.12+Math.random()*.76),H*(0.06+Math.random()*.55)),i*190);
+  let bi=setInterval(()=>burst(W*(0.12+Math.random()*.76),H*(0.06+Math.random()*.55)),420);
+  setTimeout(()=>clearInterval(bi),10000);
+  document.getElementById('blastMsg').innerHTML=(currentLang==='te'?'ఈ రోజే ఆ రోజు! 🌸🎊<br>సనప సుమంత్ ప్రపుల్ల & జగార్లమూడి జయ లక్ష్మి':'Today is the Day! 🌸🎊<br>Sanapa Sumanth Prapulla & Jagarlamudi Jaya Lakshmi');
+  function loop(){
+    ctx.fillStyle='rgba(0,0,0,0.1)';ctx.fillRect(0,0,W,H);
+    for(let i=parts.length-1;i>=0;i--){parts[i].upd();parts[i].drw(ctx);if(parts[i].al<=0)parts.splice(i,1);}
+    if(parts.length>0) requestAnimationFrame(loop);
+    else{ctx.clearRect(0,0,W,H);canvas.style.display='none';}
+  }
+  loop();
+  setTimeout(()=>{overlay.style.transition='opacity 1.2s';overlay.style.opacity='0';setTimeout(()=>{overlay.style.display='none';overlay.style.opacity='1';},1200);},5500);
+}
+
+// ═══════════════════════════════════════════════════
+// REALISTIC BIRDS + FLOWER PETALS
+// ═══════════════════════════════════════════════════
+(function(){
+  const canvas = document.getElementById('magicCanvas');
+  const ctx    = canvas.getContext('2d');
+  let W, H;
+  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
+  resize(); window.addEventListener('resize',resize);
+
+  // ── PETALS ──
+  const PCOLS=['#f9c8d4','#f7b8c8','#fad4e0','#f4a0bc','#fce8ee','#ffe0c0'];
+  const petals=[];
+  function rp(){
+    return{x:Math.random()*W,y:-20-Math.random()*160,sz:5+Math.random()*9,
+      sy:.4+Math.random()*.9,sx:-.25+Math.random()*.5,
+      rot:Math.random()*Math.PI*2,rs:(Math.random()-.5)*.035,
+      sw:Math.random()*Math.PI*2,sws:.007+Math.random()*.011,sa:.7+Math.random()*1.1,
+      c:PCOLS[Math.floor(Math.random()*PCOLS.length)],op:.4+Math.random()*.45,tp:Math.floor(Math.random()*3)};
+  }
+  for(let i=0;i<28;i++){const p=rp();p.y=Math.random()*H;petals.push(p);}
+  function drawPetal(p){
+    ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.globalAlpha=p.op;ctx.fillStyle=p.c;
+    if(p.tp===0){ctx.beginPath();ctx.ellipse(0,0,p.sz*.5,p.sz,0,0,Math.PI*2);ctx.fill();}
+    else if(p.tp===1){ctx.beginPath();ctx.moveTo(0,-p.sz);ctx.bezierCurveTo(p.sz*.65,-p.sz*.28,p.sz*.45,p.sz*.5,0,p.sz*.65);ctx.bezierCurveTo(-p.sz*.45,p.sz*.5,-p.sz*.65,-p.sz*.28,0,-p.sz);ctx.fill();}
+    else{for(let i=0;i<5;i++){ctx.save();ctx.rotate(i*Math.PI*2/5);ctx.beginPath();ctx.ellipse(0,-p.sz*.48,p.sz*.26,p.sz*.48,0,0,Math.PI*2);ctx.fill();ctx.restore();}ctx.beginPath();ctx.arc(0,0,p.sz*.16,0,Math.PI*2);ctx.fillStyle='#fce08a';ctx.fill();}
+    ctx.restore();
+  }
+
+  // ══════════════════════════════════════════
+  // REALISTIC BIRDS
+  // Using anatomically-correct bird shapes:
+  // - Tapered body with breast, wing & tail
+  // - Figure-8 wingbeat physics
+  // - Individual primary feathers on wings
+  // - Banking/tilting during turns
+  // - Glide phases (wings spread flat)
+  // - Flock behavior with slight offsets
+  // ══════════════════════════════════════════
+  const BIRD_COUNT = 9;
+  const birds = [];
+
+  function makeBird(fresh){
+    const goRight = Math.random() > 0.5;
+    const speed   = 0.9 + Math.random()*1.6;
+    const sz      = 14 + Math.random()*14;
+    return {
+      x: fresh ? (goRight ? -sz*3 : W+sz*3) : Math.random()*W,
+      y: H*0.05 + Math.random()*H*0.45,
+      speed: speed * (goRight ? 1 : -1),
+      goRight,
+      sz,
+      // Wing animation — figure-8 double beat
+      phase:    Math.random()*Math.PI*2,
+      phaseSpd: 0.055 + Math.random()*0.045,
+      // Altitude wave — slow natural drift
+      altWave:  Math.random()*Math.PI*2,
+      altSpd:   0.005 + Math.random()*0.005,
+      altAmp:   12 + Math.random()*22,
+      // Bank angle when climbing/descending
+      bank:     0,
+      prevY:    0,
+      // Glide phase
+      glideTimer: 0,
+      gliding:    false,
+      // Colour: dark with slight variation
+      bodyColor: `hsl(${25+Math.floor(Math.random()*15)},${28+Math.floor(Math.random()*12)}%,${14+Math.floor(Math.random()*10)}%)`,
+      wingColor: `hsl(${25+Math.floor(Math.random()*15)},${25+Math.floor(Math.random()*10)}%,${20+Math.floor(Math.random()*10)}%)`,
+      opacity:  0.55 + Math.random()*0.35,
+    };
+  }
+
+  for(let i=0;i<BIRD_COUNT;i++) birds.push(makeBird(false));
+
+  function drawBird(b){
+    const s = b.sz;
+    ctx.save();
+    ctx.translate(b.x, b.y);
+    if(!b.goRight) ctx.scale(-1,1);
+
+    // Banking tilt based on vertical motion
+    const bankAngle = Math.atan2(b.y - b.prevY, Math.abs(b.speed)) * 0.8;
+    ctx.rotate(bankAngle);
+    ctx.globalAlpha = b.opacity;
+
+    // Wing beat — figure-8: up stroke fast, down stroke powerful
+    const raw = Math.sin(b.phase);
+    // Down stroke (0→π) is wider/slower, upstroke faster
+    const beat = raw > 0
+      ? Math.pow(raw, 0.7)        // down stroke — smooth power
+      : -Math.pow(-raw, 1.4);     // up stroke — snappy
+
+    const wingUp   = b.gliding ? -0.2 : beat * 0.85;  // left wing angle
+    const wingDown = b.gliding ?  0.2 : -beat * 0.72; // right wing angle
+
+    // ── BODY ──
+    // Realistic tapered bird body
+    ctx.fillStyle = b.bodyColor;
+    ctx.beginPath();
+    // Head
+    ctx.arc(s*0.54, -s*0.06, s*0.18, 0, Math.PI*2);
+    ctx.fill();
+    // Beak
+    ctx.fillStyle = `hsl(35,45%,38%)`;
+    ctx.beginPath();
+    ctx.moveTo(s*0.70, -s*0.07);
+    ctx.lineTo(s*0.92, -s*0.02);
+    ctx.lineTo(s*0.70, s*0.03);
+    ctx.closePath(); ctx.fill();
+
+    // Breast & body
+    ctx.fillStyle = b.bodyColor;
+    ctx.beginPath();
+    ctx.moveTo(s*0.54, -s*0.06);
+    ctx.bezierCurveTo(s*0.62,-s*0.22, s*0.2,-s*0.28, -s*0.15,-s*0.18);
+    ctx.bezierCurveTo(-s*0.45,-s*0.08, -s*0.5, s*0.06, -s*0.38, s*0.15);
+    ctx.bezierCurveTo(-s*0.1, s*0.24, s*0.38, s*0.22, s*0.52, s*0.08);
+    ctx.bezierCurveTo(s*0.58, s*0.0, s*0.56, -s*0.04, s*0.54, -s*0.06);
+    ctx.fill();
+
+    // ── LEFT WING (upper, main power wing) ──
+    ctx.save();
+    ctx.translate(0, 0);
+    ctx.rotate(wingUp * 1.1);
+    ctx.fillStyle = b.wingColor;
+    ctx.beginPath();
+    ctx.moveTo(-s*0.05, -s*0.08);
+    ctx.bezierCurveTo(-s*0.1, -s*(0.18 + wingUp*0.35), -s*0.3, -s*(0.35+wingUp*0.4), -s*0.55, -s*(0.28+wingUp*0.3));
+    ctx.bezierCurveTo(-s*0.72, -s*(0.22+wingUp*0.25), -s*0.85, -s*(0.12+wingUp*0.15), -s*0.9, -s*(0.0+wingUp*0.05));
+    // Wing tip primary feathers
+    ctx.lineTo(-s*0.78, -s*0.02);
+    ctx.lineTo(-s*0.72, -s*0.1);
+    ctx.lineTo(-s*0.62, -s*0.04);
+    ctx.lineTo(-s*0.52, -s*0.12);
+    ctx.bezierCurveTo(-s*0.3, -s*0.08, -s*0.1, -s*0.04, -s*0.05, -s*0.08);
+    ctx.fill();
+    // Wing covert feather hint
+    ctx.strokeStyle=`rgba(50,30,10,0.2)`;ctx.lineWidth=0.8;
+    ctx.beginPath();ctx.moveTo(-s*0.12,-s*0.12);ctx.bezierCurveTo(-s*0.3,-s*0.2,-s*0.5,-s*0.18,-s*0.65,-s*0.12);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-s*0.12,-s*0.06);ctx.bezierCurveTo(-s*0.28,-s*0.13,-s*0.46,-s*0.1,-s*0.58,-s*0.05);ctx.stroke();
+    ctx.restore();
+
+    // ── RIGHT WING (lower, matching) ──
+    ctx.save();
+    ctx.rotate(wingDown * 0.95);
+    ctx.fillStyle = b.wingColor;
+    ctx.beginPath();
+    ctx.moveTo(-s*0.05, s*0.08);
+    ctx.bezierCurveTo(-s*0.1, s*(0.18 + (-wingDown)*0.32), -s*0.3, s*(0.32+(-wingDown)*0.38), -s*0.55, s*(0.25+(-wingDown)*0.28));
+    ctx.bezierCurveTo(-s*0.72, s*(0.18+(-wingDown)*0.2), -s*0.85, s*(0.1+(-wingDown)*0.12), -s*0.9, s*(0.0+(-wingDown)*0.04));
+    ctx.lineTo(-s*0.78, s*0.02);
+    ctx.lineTo(-s*0.70, s*0.1);
+    ctx.lineTo(-s*0.60, s*0.04);
+    ctx.lineTo(-s*0.50, s*0.12);
+    ctx.bezierCurveTo(-s*0.3, s*0.07, -s*0.1, s*0.03, -s*0.05, s*0.08);
+    ctx.fill();
+    ctx.strokeStyle=`rgba(50,30,10,0.2)`;ctx.lineWidth=0.8;
+    ctx.beginPath();ctx.moveTo(-s*0.12,s*0.12);ctx.bezierCurveTo(-s*0.3,s*0.2,-s*0.5,s*0.18,-s*0.65,s*0.12);ctx.stroke();
+    ctx.restore();
+
+    // ── TAIL ──
+    ctx.fillStyle = b.wingColor;
+    // Tail is fan-shaped when gliding, closed when flapping
+    const tailSpread = b.gliding ? 1 : 0.5 + Math.abs(beat)*0.5;
+    ctx.beginPath();
+    ctx.moveTo(-s*0.38, -s*0.06);
+    ctx.lineTo(-s*0.70, -s*(0.18*tailSpread));
+    ctx.lineTo(-s*0.78, 0);
+    ctx.lineTo(-s*0.70,  s*(0.18*tailSpread));
+    ctx.lineTo(-s*0.38,  s*0.06);
+    ctx.bezierCurveTo(-s*0.45, 0, -s*0.45, 0, -s*0.38, -s*0.06);
+    ctx.fill();
+
+    // Individual tail feathers
+    ctx.strokeStyle=`rgba(30,15,5,0.3)`;ctx.lineWidth=0.7;
+    for(let f=0;f<5;f++){
+      const fa = -s*0.2*tailSpread + f*(s*0.1*tailSpread);
+      ctx.beginPath();
+      ctx.moveTo(-s*0.38, fa*0.3);
+      ctx.lineTo(-s*0.76, fa);
+      ctx.stroke();
+    }
+
+    // Eye
+    ctx.fillStyle='rgba(10,5,2,0.9)';
+    ctx.beginPath();ctx.arc(s*0.6,-s*0.1,s*0.055,0,Math.PI*2);ctx.fill();
+    ctx.fillStyle='rgba(255,255,255,0.7)';
+    ctx.beginPath();ctx.arc(s*0.61,-s*0.11,s*0.022,0,Math.PI*2);ctx.fill();
+
+    ctx.restore();
+  }
+
+  // ── ANIMATION LOOP ──
+  function animate(){
+    ctx.clearRect(0,0,W,H);
+
+    // Petals
+    for(let p of petals){
+      p.sw+=p.sws; p.x+=p.sx+Math.sin(p.sw)*p.sa*0.07; p.y+=p.sy; p.rot+=p.rs;
+      drawPetal(p);
+      if(p.y>H+25) Object.assign(p,rp());
+    }
+
+    // Birds
+    for(let b of birds){
+      b.prevY = b.y;
+
+      // Glide phase toggle
+      if(!b.gliding && Math.random()<0.002){ b.gliding=true; b.glideTimer=60+Math.floor(Math.random()*80); }
+      if(b.gliding){ b.glideTimer--; if(b.glideTimer<=0) b.gliding=false; }
+
+      // Wing beat speed — faster when flapping, pause in glide
+      if(!b.gliding) b.phase += b.phaseSpd;
+      // Altitude wave
+      b.altWave += b.altSpd;
+      b.y += Math.sin(b.altWave)*0.38;
+      // Forward movement with slight wobble
+      b.x += b.speed + Math.sin(b.altWave*2.3)*0.15;
+
+      drawBird(b);
+
+      if((b.goRight && b.x > W+b.sz*4) || (!b.goRight && b.x < -b.sz*4)){
+        Object.assign(b, makeBird(true));
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+  animate();
+})();
+
+// ── Scroll Reveal ──
+const obs = new IntersectionObserver(
+  es=>es.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('visible'); }),
+  {threshold:0.1}
+);
+
+document.querySelectorAll('.venue-card').forEach(el=>obs.observe(el));
+// ===== CURTAIN OPEN =====
+window.addEventListener("load", function(){
+
+  const left = document.querySelector(".curtain.left");
+  const right = document.querySelector(".curtain.right");
+  const intro = document.getElementById("curtainIntro");
+
+  // open after 2 seconds
+ // fade message early
+setTimeout(() => {
+  document.querySelector(".intro-message").style.animation = "fadeOut 0.8s forwards";
+}, 1200);
+
+// open curtains faster
+setTimeout(() => {
+  left.style.transform = "translateX(-100%)";
+  right.style.transform = "translateX(100%)";
+}, 1500);
+});
+
+</script>
+</body>
+</html>
