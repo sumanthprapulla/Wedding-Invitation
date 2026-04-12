@@ -582,7 +582,7 @@ footer p{font-size:clamp(8px,1.8vw,11px);letter-spacing:.22em;text-transform:upp
 
 </div>
   <div class="hero-divider"><span></span><span class="hero-divider-icon">✦</span><span></span></div>
-  <p class="hero-date" data-en="We invite you to celebrate our wedding on Friday, the 8th May, 2026" data-te="2026 మే 8వ తేదీ, శుక్రవారం నాడు జరిగే మా వివాహ వేడుకకు మిమ్మల్ని ఆహ్వానిస్తున్నాము.">We invite you to celebrate our wedding on Friday, the 8th May, 2026</p>
+  <p1 class="hero-date" data-en="We invite you to celebrate our wedding on Friday, the 8th May, 2026" data-te="2026 మే 8వ తేదీ, శుక్రవారం నాడు జరిగే మా వివాహ వేడుకకు మిమ్మల్ని ఆహ్వానిస్తున్నాము.">We invite you to celebrate our wedding on Friday, the 8th May, 2026</p1>
   <!-- <p class="hero-location" data-en="Hyderabad, India" data-te="హైదరాబాద్, భారతదేశం">Hyderabad, India</p> -->
 
   <div class="countdown" id="countdown">
@@ -967,23 +967,16 @@ function drawBananaTree(ctx, x, baseY, treeH, scale, flip){
 // ═══════════════════════════════════════════════════
 let currentLang = 'en';
 function toggleLang(){
-  currentLang = currentLang === 'en' ? 'te' : 'en';
-
-  document.getElementById('langToggle').textContent =
-    currentLang === 'en' ? 'తెలుగు' : 'English';
-
+  currentLang = currentLang==='en' ? 'te' : 'en';
+  document.getElementById('langToggle').textContent = currentLang==='en' ? 'తెలుగు' : 'English';
   document.querySelectorAll('[data-en]').forEach(el=>{
-    const value = el.getAttribute('data-' + currentLang);
-
-    if(value){
-      // if element contains HTML tags like <br> or <span>
-      if(value.includes('<')){
-        el.innerHTML = value;
-      } else {
-        el.textContent = value;
-      }
-    }
+    const v = el.getAttribute('data-'+currentLang);
+    if(v !== null && v !== '') el.innerHTML = v;
   });
+  // Swap font priority so Telugu glyphs render from Noto Sans Telugu, not Jost
+  document.body.style.fontFamily = currentLang === 'te'
+    ? "'Noto Sans Telugu','Jost',sans-serif"
+    : "'Jost','Noto Sans Telugu',sans-serif";
 }
 
 // ═══════════════════════════════════════════════════
@@ -1007,10 +1000,6 @@ function updateCountdown(){
 updateCountdown();
 setInterval(updateCountdown,1000);
 
-window.addEventListener("DOMContentLoaded", () => {
-  toggleLang();   // apply default once
-  toggleLang();   // switch back (fixes initial rendering issues)
-});
 // ═══════════════════════════════════════════════════
 // FIREWORKS BLAST
 // ═══════════════════════════════════════════════════
@@ -1321,13 +1310,19 @@ setTimeout(() => {
   document.querySelector(".intro-message").style.animation = "fadeOut 0.8s forwards";
 }, 1200);
 
-// open curtains faster
+// open curtains
 setTimeout(() => {
   left.style.transform = "translateX(-100%)";
   right.style.transform = "translateX(100%)";
 }, 1500);
-});
 
+// FIX: curtainIntro stays fixed over entire page blocking all clicks.
+// Remove it from DOM after animation completes so langToggle works.
+setTimeout(() => {
+  if (intro) intro.remove();
+}, 3600);
+
+});
 </script>
 </body>
 </html>
